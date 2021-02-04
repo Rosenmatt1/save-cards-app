@@ -1,0 +1,4 @@
+mock-node-server/
+server/
+src/react-app-env.d.ts
+*.svg
