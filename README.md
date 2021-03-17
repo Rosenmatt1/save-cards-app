@@ -140,7 +140,7 @@ query {
 
 On MacOS, use [brew](https://brew.sh/) to manage installation of supporting programs, as it keeps things tidy on OSX.
 
-Main dependency is Docker and Compose.
+Main dependency is Docker and Compose. Note that the poetry setup has issues with Docker, so you can work locally instead. We're working to fix this setup soon, sorry about that!
 
 - Install [Docker](https://docs.docker.com/docker-for-mac/install/)
 - Install [Compose](https://docs.docker.com/compose/install/)
@@ -174,6 +174,8 @@ This project uses [poetry](https://python-poetry.org/). If you wish to add depen
 ```
 poetry add <package name>  # this automatically adds it to the pyproject.toml and poetry.lock
 ```
+
+NOTE: Poetry has issues working with docker in the setup for this repo. You can also work with python locally instead of docker to get around this.
 
 ### Running tests
 
