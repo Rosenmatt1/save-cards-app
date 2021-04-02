@@ -26,21 +26,18 @@ this setup. Our goals are to assess:
 - test coverage (see instructions for [running tests](#running-tests))
 - proficiency
 
-If you wish to work full-stack, please attempt both of these:
-
-- [Frontend challenge](#frontend-challenge)
-- [Backend challenge](#backend-challenge)
+If you wish to work full-stack, please attempt both frontend and backend.
 
 ## General instructions
 
 - Please note there is a shared `.env` file for environment variables. This file is used by
-  frontend and backend. The `./docker-assist` script automatically copies the example for you.
-- Please lint and explain your code (even just briefly). CircleCI checks this, you can see how
+  frontend and backend.
+- Please lint and explain your code (even just briefly). CI runs checks, you can see them in `.github/workflows`
 - After completing the challenge to a level that you're satisfied shows off your expertise,
-  open a pull request against master (can open two separate ones if you're doing frontend + backend)
-- In your PR add a description explaining anything you think is worthwhile, and/or just summarizing
+  open a pull request against master (open two separate ones if you're doing frontend + backend)
+- In your PR add a description explaining anything you think is worthwhile, summarizing
   your approach.
-- The repo uses CircleCI to run tests and lint checks on your PR. We'd like to see those passing.
+- The repo uses CI to run tests and lint checks on your PR. We'd like to see those passing.
 
 ## Frontend challenge
 
@@ -68,6 +65,10 @@ Feel free to use any additional libraries.
 
 [Example implementation.](https://drive.google.com/file/d/1uIYhG-74wrWs7YZx6Zz9Bdn3WSEtaIWY/view?usp=sharing)
 
+### Troubleshooting & Tips
+
+If you have any issues with husky/commit hooks, you may remove the \*.py section of "lint-staged" in package.json
+
 ### Design
 
 ![deal](./design/deal.png)
@@ -94,7 +95,7 @@ See [CRA documentation](https://facebook.github.io/create-react-app/).
 ## Backend challenge
 
 **TL;DR (but please, read on): backend version of the frontend card game.**
-Use Django (v2+), graphene (v2+), and a SQL database (postgres, for migrations).
+Use Django (v3+), graphene (v2+), and a SQL database (postgres, for migrations).
 
 Session, auth or login are all optional, but clean implementations earn points.
 
@@ -104,14 +105,10 @@ Session, auth or login are all optional, but clean implementations earn points.
 3. Pressing the button again should deal 5 unique, random cards. Within the same game, you should never get the same cards again that you got in the past (just like a physical deck).
    - Same mutation.
    - For storing data/state, any clean solution goes if you wanna focus on other parts.
-4. Add a card counter which shows how many cards are dealt/left.
-   - Backend support
-5. Add a button to reset the game.
-   - Backend support
-6. When all the cards have been dealt, Game Over should be displayed.
-   - Backend support
-7. If there is an ace in the last draw, display You Win, otherwise display You Lose, Sucker.
-   - Bonus: backend support
+4. API for a card counter which shows how many cards are dealt/left.
+5. API to reset the game.
+6. API to show the game is over.
+7. API for win/lose. If there is an ace in the last draw, display You Win, otherwise display You Lose, Sucker.
 8. Unit tests.
 9. Bonuses:
    - Streak of wins/loses/games played in <period> (can be the last hour, but should be configurable)
@@ -125,7 +122,7 @@ You also don't need to implement authentication (although you are welcome to, if
 
 Feel free to use any additional libraries.
 
-You can run a sample query at http://localhost:5000/graphql/:
+You can run a sample query at http://localhost:5000/graphql/
 
 ```graphql
 query {
@@ -138,61 +135,73 @@ query {
 
 ### Getting started
 
-On MacOS, use [brew](https://brew.sh/) to manage installation of supporting programs, as it keeps things tidy on OSX.
+On MacOS, use [brew](https://brew.sh/) to manage installation of supporting programs, as it keeps things tidy.
 
-Main dependency is Docker and Compose. Note that the poetry setup has issues with Docker, so you can work locally instead. We're working to fix this setup soon, sorry about that!
+For backend, the recommended way is to use poetry and pyenv. All of the commands in this section are from the `server` folder.
 
-- Install [Docker](https://docs.docker.com/docker-for-mac/install/)
-- Install [Compose](https://docs.docker.com/compose/install/)
+You may also work in docker, using the provided `./docker-assist` and `docker-compose.yml`, but it's generally quicker to develop locally. See `docker/Docker.server/Dockerfile` for the docker setup, and note that poetry is set up to export to `requirements.txt`.
 
-After you've got those:
+Install [poetry](https://python-poetry.org/). To manage python versions, we recommend installing [`pyenv`](https://github.com/pyenv/pyenv). See [the `poetry` documentation](https://python-poetry.org/docs/managing-environments/) for details.
 
-```bash
-./docker-assist start  # if this fails, try ./d build first
-```
+Then install Python dependencies:
 
-Wait a while and you're ready to go. It's a good idea to run `start` as-is (attached mode).
-However, if you don't care about the server logs for now, you can start in daemon mode.
+    cd server/
+    # try one of these
+    pyenv install 3.9.2  # or pyenv local 3.9.2
+    poetry env use ~/.pyenv/versions/3.9.2/bin/python
+    poetry install
+    # or
+    poetry install --python `which python3`
 
-To start in daemon mode:
+If you don't have it already, you'll also want to install Postgres. Version 10 or later should be fine.
 
-```bash
-cd server/
-./docker-assist start -d
-```
+If you have issues:
+
+- Check which pyenv version homebrew installs https://github.com/Homebrew/homebrew-core/blob/master/Formula/pyenv.rb#L4
+- See what versions of python that pyenv version supports: https://github.com/pyenv/pyenv/tree/v1.2.19/plugins/python-build/share/python-build
+
+Copy example env vars to `.env`. You might need to change `DATABASE_URL` based on your environment.
+
+    cp ../.env.example ../.env
+
+Create the `uplifty` database:
+
+    createdb uplifty
+
+Load the sample user data:
+
+    poetry run ./manage.py migrate
+    poetry run ./manage.py loaddata uplifty/fixtures/users.json
+    poetry run ./manage.py runserver 5000
 
 Now you can go to http://localhost:5000, http://localhost:5000/graphql/, or http://localhost:5000/admin/ for the Django admin.
 
 Log in to the admin with the [sample test user](#sample-test-user) from below and try the sample query from the challenge.
 
-Feel free to inspect the `docker-assist` bash script to see other handy commands you can run.
-
 ### Installing packages
 
-This project uses [poetry](https://python-poetry.org/). If you wish to add dependencies, `./docker-assist bash` into the container and then:
-
 ```
-poetry add <package name>  # this automatically adds it to the pyproject.toml and poetry.lock
+poetry add <package name>  # this automatically adds it to pyproject.toml and poetry.lock
 ```
 
-NOTE: Poetry has issues working with docker in the setup for this repo. You can also work with python locally instead of docker to get around this.
+If you manually update `pyproject.toml`, make sure you run `poetry update` to update the lockfile.
 
 ### Running tests
 
 Please run the tests, and lint your backend code. This helps us review code, as it's already consistent with this project.
 
-```bash
-./docker-assist lint
-./docker-assist test
+```
+yarn autoflake
+yarn pytest:fresh
 ```
 
-The following are set up by docker containers. No need to install them yourself, this is just an overview:
+Or check out `package.json` for other options.
 
 ### Server architecture
 
 - PostgreSQL 10+
-- Python 3.8+
-- Django 2
+- Python 3.9+
+- Django 3
 - [django-environ](https://github.com/joke2k/django-environ) for easy environment configuration via `.env` files
 
 ### Sample test user

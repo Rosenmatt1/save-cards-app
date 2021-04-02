@@ -15,7 +15,13 @@
     "start:server": "node mock-node-server/index.js",
     "eslint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "prettier:write": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
-    "prettier:check": "prettier --list-different \"src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\""
+    "prettier:check": "prettier --list-different \"src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
+    "autoflake": "cd server && poetry run autoflake . --in-place --recursive --remove-all-unused-imports --remove-duplicate-keys --remove-unused-variables",
+    "black": "cd server && poetry run black uplifty tests",
+    "isort": "cd server && poetry run isort uplifty tests",
+    "pytest": "yarn pytest:fresh --reuse-db",
+    "pytest:fresh": "cd server && DOTENV_LOCATION=.env.pytest poetry run pytest",
+    "pytest:parallel": "cd server && DOTENV_LOCATION=.env.pytest poetry run pytest -n auto"
   },
   "browserslist": [
     ">0.2%",
@@ -31,6 +37,9 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,md,css,scss}": [
       "prettier --write"
+    ],
+    "*.py": [
+      "./scripts/lint-backend.sh"
     ]
   },
   "dependencies": {

@@ -39,9 +39,9 @@ function test {
     echo "Running tests with cache (use --cache-clear otherwise)..."
     cd /code/server/
     if [ $# -eq 0 ]; then
-        DJANGO_SETTINGS_MODULE=uplifty.settings pytest --pylama tests/
+        DJANGO_SETTINGS_MODULE=uplifty.settings pytest tests/
     else
-        DJANGO_SETTINGS_MODULE=uplifty.settings pytest --pylama "$@"
+        DJANGO_SETTINGS_MODULE=uplifty.settings pytest "$@"
     fi
 }
 

@@ -1,4 +1,4 @@
-FROM python:3.8.2
+FROM python:3.9.2
 
 ENV PYTHONUNBUFFERED 1
 
@@ -9,11 +9,9 @@ RUN apt-get update && apt-get install -y \
     postgresql-client \
     python-psycopg2 \
     supervisor
-RUN python3 -m pip install poetry
-RUN python3 -m pip install gunicorn
 
 RUN mkdir /code
-WORKDIR /code/server
+ADD docker /code
 
 RUN rm /etc/supervisor/supervisord.conf && \
     ln -s /code/docker/Docker.server/supervisord.conf /etc/supervisor/supervisord.conf && \
@@ -23,18 +21,20 @@ RUN rm /etc/supervisor/supervisord.conf && \
     mkdir -p /var/log/gunicorn && \
     mkdir -p /code/logs/supervisord
 
-ADD server /code
-ADD .env /code
-ADD docker /code
-
-# Install python requirements
-RUN poetry install
-
 RUN groupadd -r app -g 1000 && \
     useradd -u 1000 -r -g app -d /code -s /bin/bash -c "Docker image user" app
 RUN chown -R app:app /code && \
     chown -R app:app /var/run && \
     chown -R app:app /var/log/gunicorn
+
+RUN pip install poetry
+RUN pip install gunicorn
+ADD server/pyproject.toml server/poetry.lock /code/server/
+ADD .env /code
+WORKDIR /code/server
+
+# Install python requirements
+RUN poetry export -f requirements.txt --output /code/server/requirements.txt && pip install -r requirements.txt
 
 EXPOSE 5000
 
