@@ -8,6 +8,9 @@ on:
     branches: [master]
   pull_request:
 
+env:
+  DOTENV_LOCATION: .env.pytest
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -80,11 +83,10 @@ jobs:
           path: server/.venv
           key: ${{ runner.os }}-py${{ matrix.python-version }}-${{ env.cache-name }}-${{ hashFiles('server/poetry.lock') }}
       - run: |
+          cp .env.example .env
           cd server
           poetry run pytest -n auto --cache-clear
           poetry run pytest --dead-fixtures
-        env:
-          DOTENV_LOCATION: .env.pytest
 
   migrations-and-fixtures:
     runs-on: ubuntu-latest
@@ -173,13 +175,13 @@ jobs:
           key: ${{ runner.os }}-py${{ matrix.python-version }}-${{ env.cache-name }}-${{ hashFiles('server/poetry.lock') }}
       - name: generate introspection schema
         run: |
-          cd server && poetry run python manage.py graphql_schema --schema uplifty.schema.schema --out ../schema.json
+          cd server && poetry run python manage.py graphql_schema --schema uplifty.schema.schema --out schema.json
       - name: check no changes to schema.json
         run: |
-          if [[ `git status --porcelain schema.json` ]]; then
-            git status --porcelain schema.json
-            git diff --exit-code schema.json
-            echo "Found changes to schema.json. Please check them in."
+          if [[ `git status --porcelain server/schema.json` ]]; then
+            git status --porcelain server/schema.json
+            git diff --exit-code server/schema.json
+            echo "Found changes to server/schema.json. Please check them in."
             exit 1
           fi
   isort:

@@ -33,9 +33,6 @@ jobs:
         # Always run this, so it throws if the package and lockfile don't match
         run: yarn install --non-interactive --frozen-lockfile --cache-folder ~/node_modules/.cache/yarn
 
-      - name: GQL Codegen
-        run: yarn run gql-codegen
-
       - uses: actions/upload-artifact@v2-preview
         with:
           name: generated
@@ -50,11 +47,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-      - name: Download GQL codegen
-        uses: actions/download-artifact@v2-preview
-        with:
-          name: generated
-          path: src/
       - name: Restore dependencies
         uses: actions/cache@main
         env:
@@ -80,11 +72,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-      - name: Download GQL codegen
-        uses: actions/download-artifact@v2-preview
-        with:
-          name: generated
-          path: src/
       - name: Restore dependencies
         uses: actions/cache@main
         env:
@@ -110,11 +97,6 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-      - name: Download GQL codegen
-        uses: actions/download-artifact@v2-preview
-        with:
-          name: generated
-          path: src/
       - run: yarn eslint
 
   prettier:

@@ -95,7 +95,7 @@ case $task in
             --rm \
             --name uplifty-test \
             uplifty \
-            pytest --pylama $args
+            pytest $args
         ;;
     'help')
         scriptname=`basename "$0"`

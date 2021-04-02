@@ -9,11 +9,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
+import os
+
 import environ
 
 root = environ.Path(__file__) - 2  # two folders back (/a/b/ - 2 = /)
 DEFAULT_ENV_PATH = environ.Path(__file__) - 3  # default location of .env file
-DEFAULT_ENV_FILE = DEFAULT_ENV_PATH.path(".env")()
+
+if os.getenv("DOTENV_LOCATION"):
+    DEFAULT_ENV_FILE = os.getenv("DOTENV_LOCATION")
+else:
+    DEFAULT_ENV_FILE = os.path.join(DEFAULT_ENV_PATH, ".env")
+
 env = environ.Env(DEBUG=(bool, False), DATABASE_URL=(str, "<NOT SET>"))
 environ.Env.read_env(env.str("ENV_PATH", DEFAULT_ENV_FILE))  # reading .env file
 
