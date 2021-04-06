@@ -147,8 +147,8 @@ Then install Python dependencies:
 
     cd server/
     # try one of these
-    pyenv install 3.9.2  # or pyenv local 3.9.2
-    poetry env use ~/.pyenv/versions/3.9.2/bin/python
+    pyenv install 3.9.4  # or pyenv local 3.9.4
+    poetry env use ~/.pyenv/versions/3.9.4/bin/python
     poetry install
     # or
     poetry install --python `which python3`

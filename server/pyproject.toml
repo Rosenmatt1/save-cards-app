@@ -39,7 +39,7 @@ description = ""
 authors = ["Uplift <interview@uplift.ltd>"]
 
 [tool.poetry.dependencies]
-python = "3.9.2"
+python = "3.9.4"
 celery = "*"
 django = ">=3"
 django-cors-headers = "*"
