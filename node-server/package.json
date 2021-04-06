@@ -1,0 +1,50 @@
+{
+  "name": "uplifty",
+  "version": "1.0.0",
+  "description": "Node.js server backend for uplifty exercise.",
+  "main": "index.ts",
+  "author": "Uplift Agency Ltd.",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "apollo-server-express": "^2.22.2",
+    "express": "^4.17.1",
+    "graphql": "^15.5.0",
+    "typescript": "^4.2.3",
+    "uuid": "^8.3.2"
+  },
+  "scripts": {
+    "gql-codegen": "graphql-codegen --config codegen.yml",
+    "start": "ts-node index.ts",
+    "test": "npm-run-all eslint prettier:check jest",
+    "jest": "jest",
+    "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prettier:write": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
+    "prettier:check": "prettier --list-different \"**/*.{js,jsx,ts,tsx,json,md,css,scss}\""
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "1.21.3",
+    "@graphql-codegen/introspection": "1.18.1",
+    "@graphql-codegen/typescript": "1.21.1",
+    "@graphql-codegen/typescript-resolvers": "1.19.0",
+    "@types/jest": "^25",
+    "@types/node": "^12",
+    "@typescript-eslint/eslint-plugin": "^2",
+    "@typescript-eslint/parser": "^2",
+    "eslint": "^6",
+    "eslint-config-airbnb": "^18",
+    "eslint-config-prettier": "^6",
+    "eslint-import-resolver-typescript": "^2",
+    "eslint-loader": "^3",
+    "eslint-plugin-graphql": "^3",
+    "eslint-plugin-import": "^2",
+    "eslint-plugin-jsx-a11y": "^6",
+    "eslint-plugin-prettier": "^3",
+    "eslint-plugin-react": "^7",
+    "graphql-tools": "^7.0.4",
+    "jest": "^26.6.3",
+    "npm-run-all": "^4",
+    "prettier": "^1",
+    "ts-jest": "^26.5.4"
+  }
+}

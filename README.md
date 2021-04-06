@@ -17,6 +17,7 @@ this setup. Our goals are to assess:
 1. [General instructions](#general-instructions)
 1. [Frontend challenge](#frontend-challenge)
 1. [Backend challenge](#backend-challenge)
+1. [Backend challenge: node](#backend-challenge-node)
 
 ## Challenge criteria
 
@@ -215,3 +216,9 @@ The database is created with a sample test user:
 | Password | uplifty                 |
 
 You can change these in the Django admin if you wish.
+
+## Backend challenge: node
+
+If you are working with node instead of Django, we'd like you to do the same backend challenge with TypeScript and GraphQL.
+
+There is a starter server you can use in `node-server/`, and it runs CI using `.github/workflows/backend_node.yml`. Please make sure the build passes.

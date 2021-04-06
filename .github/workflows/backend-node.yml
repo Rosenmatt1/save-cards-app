@@ -1,4 +1,4 @@
-name: frontend
+name: backend-node
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [master]
     paths:
-      - 'src/**/*'
+      - 'node-server/**/*'
 
 env:
   EXTEND_ESLINT: true
@@ -24,46 +24,24 @@ jobs:
           node-version: "12.x"
       - name: Cache node_modules
         uses: actions/cache@main
-        id: cache-node
+        id: cache-node-server
         env:
-          cache-name: cache-node
+          cache-name: cache-node-server
         with:
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          path: node-server/node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('node-server/yarn.lock') }}
 
       - name: Install dependencies
         # Always run this, so it throws if the package and lockfile don't match
-        run: yarn install --non-interactive --frozen-lockfile --cache-folder ~/node_modules/.cache/yarn
+        run: cd node-server && yarn install --production=false --non-interactive --frozen-lockfile --cache-folder ~/node_modules/.cache/yarn
+
+      - name: GQL Codegen
+        run: cd node-server && yarn run gql-codegen
 
       - uses: actions/upload-artifact@v2-preview
         with:
           name: generated
-          path: "./src/**/__generated__/*"
-
-  yarn-build:
-    runs-on: ubuntu-latest
-    needs: deps-and-codegen
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "12.x"
-      - name: Restore dependencies
-        uses: actions/cache@main
-        env:
-          cache-name: cache-node
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn build
-
-      - name: yarn analyze
-        run: yarn run analyze
-      - uses: actions/upload-artifact@v2-preview
-        with:
-          name: analyze
-          path: ./report.html
+          path: "./node-server/graphql-types.ts*"
 
   test:
     runs-on: ubuntu-latest
@@ -74,14 +52,19 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
+      - name: Download GQL codegen
+        uses: actions/download-artifact@v2-preview
+        with:
+          name: generated
+          path: node-server/
       - name: Restore dependencies
         uses: actions/cache@main
         env:
-          cache-name: cache-node
+          cache-name: cache-node-server
         with:
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn jest
+          path: node-server/node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('node-server/yarn.lock') }}
+      - run: cd node-server && yarn jest
 
   eslint:
     runs-on: ubuntu-latest
@@ -95,11 +78,16 @@ jobs:
       - name: Restore dependencies
         uses: actions/cache@main
         env:
-          cache-name: cache-node
+          cache-name: cache-node-server
         with:
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn eslint
+          path: node-server/node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('node-server/yarn.lock') }}
+      - name: Download GQL codegen
+        uses: actions/download-artifact@v2-preview
+        with:
+          name: generated
+          path: src/
+      - run: cd node-server && yarn eslint
 
   prettier:
     runs-on: ubuntu-latest
@@ -113,11 +101,11 @@ jobs:
       - name: Restore dependencies
         uses: actions/cache@main
         env:
-          cache-name: cache-node
+          cache-name: cache-node-server
         with:
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn run prettier:check
+          path: node-server/node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('node-server/yarn.lock') }}
+      - run: cd node-server && yarn run prettier:check
 
   audit:
     runs-on: ubuntu-latest
@@ -132,8 +120,8 @@ jobs:
       - name: Restore dependencies
         uses: actions/cache@main
         env:
-          cache-name: cache-node
+          cache-name: cache-node-server
         with:
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          path: node-server/node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('node-server/yarn.lock') }}
       - run: yarn audit --groups dependencies

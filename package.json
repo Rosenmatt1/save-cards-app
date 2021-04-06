@@ -12,7 +12,7 @@
     "jest": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "start:js": "react-scripts start",
-    "start:server": "node mock-node-server/index.js",
+    "start:server": "cd node-server && yarn start",
     "eslint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "prettier:write": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
     "prettier:check": "prettier --list-different \"src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
