@@ -5,7 +5,7 @@
   "proxy": "http://localhost:5000",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "npm-run-all -p start:js start:server",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "analyze": "source-map-explorer 'build/static/js/*.js' --html > report.html",
     "test": "npm-run-all eslint prettier:check jest",
