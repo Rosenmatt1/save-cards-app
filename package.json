@@ -7,8 +7,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "analyze": "source-map-explorer 'build/static/js/*.js' --html > report.html",
     "test": "npm-run-all eslint prettier:check jest",
+    "analyze": "source-map-explorer 'build/static/js/*.js' --html > report.html",
     "jest": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "start:js": "react-scripts start",
@@ -43,6 +43,7 @@
     ]
   },
   "dependencies": {
+    "@craco/craco": "^6.1.1",
     "apollo-server-express": "^2",
     "express": "^4",
     "faker": "^4",
@@ -54,6 +55,7 @@
     "typescript": "^3"
   },
   "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.1.0",
     "@types/jest": "^25",
     "@types/lodash": "^4",
     "@types/node": "^12",
@@ -62,6 +64,7 @@
     "@types/react-test-renderer": "^16",
     "@typescript-eslint/eslint-plugin": "^2",
     "@typescript-eslint/parser": "^2",
+    "autoprefixer": "^9.8.6",
     "eslint": "^6",
     "eslint-config-airbnb": "^18",
     "eslint-config-prettier": "^6",
@@ -78,9 +81,11 @@
     "lint-staged": "^10",
     "node-sass": "^4",
     "npm-run-all": "^4",
+    "postcss": "^7.0.35",
     "prettier": "^1",
     "react-test-renderer": "^16",
-    "source-map-explorer": "^2"
+    "source-map-explorer": "^2",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0"
   },
   "resolutions": {
     "react-scripts/eslint-plugin-import": "^2.20.1"
