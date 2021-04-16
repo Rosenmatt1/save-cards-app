@@ -70,7 +70,7 @@ function Deal({ data }) {
       ) : (
         <div className="deal-container" onClick={() => generateRandomCards()}>
           {' '}
-          <div className="deal"> DEAL </div>{' '}
+          <div className="deal"> DEAL1 </div>{' '}
         </div>
       )}
       <Counter data={cards} />

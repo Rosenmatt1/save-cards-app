@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import '../App.css'
+// import '../App.css'
+import '../assets/tailwind.css'
 
 import Cards from './Cards.js'
 import Counter from './Counter.js'
@@ -68,7 +69,7 @@ function Deal({ data }) {
       {cards.length == 0 ? (
         <PlayAgain onClick={() => resetDeck()} />
       ) : (
-        <div className="deal-container" onClick={() => generateRandomCards()}>
+        <div className="deal-container bg-green-500" onClick={() => generateRandomCards()}>
           {' '}
           <div className="deal"> DEAL </div>{' '}
         </div>

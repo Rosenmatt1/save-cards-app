@@ -3,3 +3,232 @@
 @tailwind components;
 
 @tailwind utilities;
+
+.poker-main {
+  background-color: green;
+  background-image: linear-gradient(315deg, #00b712 0%, green 74%);
+  width: 100vw;
+  height: 100vh;
+}
+
+.counter-container {
+  height: 100px;
+  width: 200px;
+  position: absolute;
+  top: 10vh;
+  right: 50vw;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  border: yellow solid 2px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.counter {
+  display: block;
+  text-align: center;
+  font: bold;
+  font-family: Alfa Slab One;
+}
+
+.reset-container {
+  height: 70px;
+  width: 200px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: yellow;
+  border: 1px solid yellow;
+  border-radius: 10px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reset {
+  /* text-align: center; */
+  font-weight: bolder;
+  font-size: 2rem;
+  font-family: Alfa Slab One;
+}
+
+/* .playAgainContainer {
+  height: 70px;
+  width: 200px;
+  position: absolute;
+  bottom:20px;
+  right: 20px;
+  color: yellow;
+  border: 1px solid yellow;
+  border-radius: 10px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.deal-container {
+  height: 100px;
+  width: 200px;
+  position: absolute;
+  bottom: 20vh;
+  right: 50vw;
+  margin-right: 20px;
+  background-color: yellow;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deal {
+  color: black;
+  font-weight: 900;
+  font-family: Alfa Slab One;
+  font-size: 3rem;
+}
+
+.cards-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.card {
+  width: 13vw;
+  height: 35vh;
+  background: white;
+  box-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.15);
+  border-radius: 0.3em;
+  font-family: Rockwell;
+  position: relative;
+}
+
+.top-left-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* width: 4vw;  */
+  position: absolute;
+  top: 0.5rem;
+  left: 1.5rem;
+}
+
+.bottom-right-suit {
+  /* display: flex;
+  flex-direction: column;
+  /* align-items: end; */
+  /* justify-content:end;  */
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+}
+
+.black {
+  color: black;
+}
+
+.red {
+  color: red;
+}
+
+.small-suit {
+  height: 3rem;
+  width: 3rem;
+}
+
+.large-suit {
+  height: 8rem;
+  width: 8rem;
+}
+
+.suit-name {
+  font-size: 5rem;
+  font-weight: 900;
+}
+
+.dealer {
+  width: 13vw;
+  height: 5vh;
+  background: white;
+  box-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.15);
+  border-radius: 0 0 0.3em 0.3em;
+  position: fixed;
+  right: 50vw;
+  top: 0;
+}
+
+.win-lose {
+  height: 70px;
+  width: 200px;
+  position: fixed;
+  top: 10px;
+  right: 50vw;
+  color: yellow;
+  border: 1px solid yellow;
+  border-radius: 10px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Loader */
+.lds-heart {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  transform: rotate(45deg);
+  transform-origin: 40px 40px;
+}
+.lds-heart div {
+  top: 32px;
+  left: 32px;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: green;
+  animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.lds-heart div:after,
+.lds-heart div:before {
+  content: ' ';
+  position: absolute;
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: green;
+}
+.lds-heart div:before {
+  left: -24px;
+  border-radius: 50% 0 0 50%;
+}
+.lds-heart div:after {
+  top: -24px;
+  border-radius: 50% 50% 0 0;
+}
+@keyframes lds-heart {
+  0% {
+    transform: scale(0.95);
+  }
+  5% {
+    transform: scale(1.1);
+  }
+  39% {
+    transform: scale(0.85);
+  }
+  45% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
