@@ -5,12 +5,13 @@
   "proxy": "http://localhost:5000",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npm run watch:css && react-scripts start",
+    "build": "npm run watch:css && react-scripts build",
     "test": "npm-run-all eslint prettier:check jest",
     "analyze": "source-map-explorer 'build/static/js/*.js' --html > report.html",
     "jest": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
     "start:js": "react-scripts start",
     "start:server": "cd node-server && yarn start",
     "eslint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
@@ -43,7 +44,6 @@
     ]
   },
   "dependencies": {
-    "@craco/craco": "^6.1.1",
     "apollo-server-express": "^2",
     "express": "^4",
     "faker": "^4",
@@ -55,7 +55,6 @@
     "typescript": "^3"
   },
   "devDependencies": {
-    "@tailwindcss/postcss7-compat": "^2.1.0",
     "@types/jest": "^25",
     "@types/lodash": "^4",
     "@types/node": "^12",
@@ -64,7 +63,7 @@
     "@types/react-test-renderer": "^16",
     "@typescript-eslint/eslint-plugin": "^2",
     "@typescript-eslint/parser": "^2",
-    "autoprefixer": "^9.8.6",
+    "autoprefixer": "^10.2.5",
     "eslint": "^6",
     "eslint-config-airbnb": "^18",
     "eslint-config-prettier": "^6",
@@ -81,11 +80,12 @@
     "lint-staged": "^10",
     "node-sass": "^4",
     "npm-run-all": "^4",
-    "postcss": "^7.0.35",
+    "postcss": "^8.2.10",
+    "postcss-cli": "^8.3.1",
     "prettier": "^1",
     "react-test-renderer": "^16",
     "source-map-explorer": "^2",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0"
+    "tailwindcss": "^2.1.1"
   },
   "resolutions": {
     "react-scripts/eslint-plugin-import": "^2.20.1"
