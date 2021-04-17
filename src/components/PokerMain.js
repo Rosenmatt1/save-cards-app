@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react'
-import '../App.css'
+// import '../App.css'
+import '../assets/tailwind.css'
+
 import Deal from './Deal.js'
 import data from '../data.js'
 
-//This componenet is where the initial fetch query would be.
-function PokerMain() {
+//This componenet is where the initial fetch query could be.
+const PokerMain = () => {
   let fullDeck = data || null
+
+  useEffect(() => {
+    // console.log("Rerender app")
+    localStorage.setItem('fullDeck', JSON.stringify(data))
+  }, [])
 
   return <Deal data={fullDeck} />
 }

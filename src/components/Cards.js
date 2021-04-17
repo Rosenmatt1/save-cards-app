@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import '../App.css'
+// import '../App.css'
+import '../assets/tailwind.css'
 
 import { ReactComponent as Diamond } from '../assets/Diamond.svg'
 

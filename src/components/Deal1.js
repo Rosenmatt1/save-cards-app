@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import '../App.css'
+// import '../App.css'
+import '../assets/tailwind.css'
 
 import Cards from './Cards.js'
 import Counter from './Counter.js'
@@ -9,18 +10,20 @@ import PlayAgain from './PlayAgain.js'
 // import Reset from './Reset.js'
 // import Loader from './shared/Loader.js';
 // import Error from './shared/Error.js';
-import allcards from '../data.js'
 
 function Deal({ data }) {
-  let allCards = data
-  // console.log("Deal Data", fullDeck)
-  const [fullDeck, setFullDeck] = useState(data)
-  const [cards, setCards] = useState(allCards)
+  const fullDeck = data.map(card => card)
+  let [cards, setCards] = useState(data)
+
   const [winner, setWinner] = useState(false)
   // let cards = data
   let card = null
   let activeCards = []
   let randomIndex = null
+
+  // useEffect(() => {
+  //   console.log("Rerender app")
+  // }, [cards]); // Only re-run the effect if count changes
 
   let generateRandomCards = () => {
     if (cards.length > 2) {
@@ -31,7 +34,7 @@ function Deal({ data }) {
         console.log('activeCards', activeCards)
         cards.splice(randomIndex, 1)
         console.log('cards', cards.length)
-        console.log('data', data)
+        // console.log('data', data)
       }
       activeCards = []
     } else if (cards.length == 2) {
@@ -56,10 +59,9 @@ function Deal({ data }) {
   }
 
   let resetDeck = () => {
-    // cards = fullDeck
+    setCards(fullDeck)
     console.log('Cards in Reset', cards)
-    console.log('full deck in Reset', data)
-    console.log('fullDeck', fullDeck)
+    console.log('fullDeck in Reset', fullDeck)
   }
 
   return (
@@ -68,9 +70,8 @@ function Deal({ data }) {
       {cards.length == 0 ? (
         <PlayAgain onClick={() => resetDeck()} />
       ) : (
-        <div className="deal-container" onClick={() => generateRandomCards()}>
-          {' '}
-          <div className="deal"> DEAL1 </div>{' '}
+        <div className="deal-container bg-yellow-300" onClick={() => generateRandomCards()}>
+          <div className="deal"> DEAL </div>
         </div>
       )}
       <Counter data={cards} />
