@@ -1,7 +1,6 @@
 import React from 'react'
-// import '../App.css'
 import '../assets/tailwind.css'
-import Deal from './Deal.js'
+// import Deal from './Deal.js'
 
 // function Reset( {resetDeck} ) {
 //   // console.log(peops.resetDeck)

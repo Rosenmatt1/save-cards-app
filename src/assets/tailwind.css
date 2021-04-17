@@ -7,9 +7,6 @@
 .poker-main {
   /* background-color: green;
   background-image: linear-gradient(315deg, #00b712 0%, green 74%); */
-
-  /* width: 100vw;
-  height: 100vh; */
   /* position: relative; */
 }
 
@@ -18,155 +15,87 @@
   top: 10vh;
   right: 50vw;
   margin-top: 20px;
+  margin-right: -2rem;
+  /* border: yellow solid 2px; */
+}
+
+.winner {
+  position: absolute;
+  top: 11vh;
+  right: 25vw;
+  margin-right: -2rem;
   /* border: yellow solid 2px; */
 }
 
 .counter {
-  display: block;
   font-family: Alfa Slab One;
 }
 
 .reset-container {
-  height: 70px;
-  width: 200px;
   position: absolute;
   bottom: 20px;
   right: 20px;
-  color: yellow;
-  border: 1px solid yellow;
-  border-radius: 10px;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* color: yellow;
+  border: 1px solid yellow; */
 }
 
 .reset {
-  /* text-align: center; */
-  font-weight: bolder;
-  font-size: 2rem;
   font-family: Alfa Slab One;
 }
 
-/* .playAgainContainer {
-  height: 70px;
-  width: 200px;
+.playAgainContainer {
   position: absolute;
-  bottom:20px;
-  right: 20px;
-  color: yellow;
-  border: 1px solid yellow;
-  border-radius: 10px;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
+  bottom: 20vh;
+  right: 50vw;
+  /* color: yellow;
+  border: 1px solid yellow; */
+}
 
 .deal-container {
-  /* height: 100px; */
-  /* width: 200px; */
-  /* position: absolute;
-  bottom: 20vh; */
-  /* right: 50vw;  */
-  /* margin-right: 20px; */
-  /* background-color: yellow; */
-  /* border-radius: 10px; */
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
+  position: absolute;
+  bottom: 16vh;
+  right: 50vw;
+  margin-right: -10rem;
 }
 
 .deal {
-  /* color: black; */
-  /* font-weight: 900; */
-  /* font-size: 3rem; */
   font-family: Alfa Slab One;
 }
 
 .cards-grid {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
 }
 
 .card {
-  width: 13vw;
-  height: 35vh;
-  background: white;
-  box-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.15);
-  border-radius: 0.3em;
-  font-family: Rockwell;
-  position: relative;
-}
-
-.top-left-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* width: 4vw;  */
   position: absolute;
-  top: 0.5rem;
-  left: 1.5rem;
+  top: 30%;
+  font-family: Rockwell;
 }
 
 .bottom-right-suit {
-  /* display: flex;
-  flex-direction: column;
-  /* align-items: end; */
-  /* justify-content:end;  */
   position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-}
-
-.black {
-  color: black;
-}
-
-.red {
-  color: red;
-}
-
-.small-suit {
-  height: 3rem;
-  width: 3rem;
-}
-
-.large-suit {
-  height: 8rem;
-  width: 8rem;
+  bottom: 1.5rem;
+  right: 1.5rem;
 }
 
 .suit-name {
-  font-size: 5rem;
+  font-size: 5.5rem;
   font-weight: 900;
 }
 
 .dealer {
-  width: 13vw;
-  height: 5vh;
-  background: white;
-  box-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.15);
-  border-radius: 0 0 0.3em 0.3em;
+  /* box-shadow: 0 0 0.0625em 0.125em rgba(0, 0, 0, 0.15); */
   position: fixed;
   right: 50vw;
   top: 0;
+  margin-right: -4rem;
 }
 
 .win-lose {
-  height: 70px;
-  width: 200px;
-  position: fixed;
-  top: 10px;
+  position: absolute;
+  bottom: 1rem;
   right: 50vw;
-  color: yellow;
-  border: 1px solid yellow;
-  border-radius: 10px;
   background-color: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-right: -12rem;
 }
 
 /* Loader */

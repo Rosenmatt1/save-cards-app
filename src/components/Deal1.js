@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from 'react'
-// import '../App.css'
 import '../assets/tailwind.css'
 
 import Cards from './Cards.js'
-import Counter from './Counter.js'
+// import Counter from './Counter.js'
 import WinOrLose from './WinOrLose.js'
 import DealerDeck from './DealerDeck.js'
 import PlayAgain from './PlayAgain.js'
 // import Reset from './Reset.js'
 // import Loader from './shared/Loader.js';
 // import Error from './shared/Error.js';
+// import data from '../data.js'
 
-function Deal({ data }) {
-  const fullDeck = data.map(card => card)
+const Deal = ({ data }) => {
   let [cards, setCards] = useState(data)
-
-  const [winner, setWinner] = useState(false)
-  // let cards = data
+  let [winner, setWinner] = useState(false)
   let card = null
   let activeCards = []
   let randomIndex = null
+  let fullDeck = [] || null
 
-  // useEffect(() => {
-  //   console.log("Rerender app")
-  // }, [cards]); // Only re-run the effect if count changes
+  useEffect(() => {
+    fullDeck = localStorage.getItem('fullDeck')
+    console.log('fullDeck from local storage on Load', fullDeck)
+  }, [])
 
   let generateRandomCards = () => {
     if (cards.length > 2) {
@@ -31,16 +30,16 @@ function Deal({ data }) {
         randomIndex = Math.floor(Math.random() * cards.length)
         card = cards[randomIndex]
         activeCards.push(card)
-        console.log('activeCards', activeCards)
+        // console.log('activeCards', activeCards)
         cards.splice(randomIndex, 1)
-        console.log('cards', cards.length)
+        console.log('cards length in generateRandomCards', cards.length)
         // console.log('data', data)
       }
       activeCards = []
     } else if (cards.length == 2) {
       activeCards.push(cards[0])
       activeCards.push(cards[1])
-      console.log('ActiveCards!', activeCards)
+      console.log('ActiveCards in Final Two!', activeCards)
       console.log('Game Over')
       checkWin(cards)
       cards = []
@@ -65,17 +64,29 @@ function Deal({ data }) {
   }
 
   return (
-    <div className="poker-main">
+    <div className="poker-main w-screen h-screen bg-gradient-to-b from-green-400 to-black ring-1">
       {cards.length !== 0 && <DealerDeck />}
+
       {cards.length == 0 ? (
         <PlayAgain onClick={() => resetDeck()} />
       ) : (
-        <div className="deal-container bg-yellow-300" onClick={() => generateRandomCards()}>
+        <div
+          className="deal-container w-96 h-28 rounded-lg flex justify-center items-center text-7xl font-extrabold bg-yellow-300"
+          onClick={() => generateRandomCards()}
+        >
           <div className="deal"> DEAL </div>
         </div>
       )}
-      <Counter data={cards} />
+
+      <div className="counter-container w-32 h-28 rounded-sm border-solid border-4 border-yellow-200 border-opacity-75 flex justify-center items-center text-center text-xl font-bold text-white bg-black">
+        <div className="counter">
+          <div> {cards.length} </div>
+          <div> Cards Left </div>
+        </div>
+      </div>
+
       <Cards data={activeCards} />
+
       {cards.length == 0 && <WinOrLose winner={winner} />}
 
       <div className="reset-container" onClick={() => resetDeck()}>

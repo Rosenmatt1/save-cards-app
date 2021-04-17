@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
-// import '../App.css'
+import React, { useEffect } from 'react'
 import '../assets/tailwind.css'
 
 import Deal from './Deal.js'
@@ -10,7 +9,6 @@ const PokerMain = () => {
   let fullDeck = data || null
 
   useEffect(() => {
-    // console.log("Rerender app")
     localStorage.setItem('fullDeck', JSON.stringify(data))
   }, [])
 
