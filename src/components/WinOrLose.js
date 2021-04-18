@@ -8,9 +8,14 @@ function WinOrLose({ winner }) {
     <div className="">
       <div>
         {winner ? (
-          <Winner />
+          <div className="winner z-10 absolute">
+            <Winner />
+          </div>
         ) : (
-          <div className="win-lose w-42 h-16 text-5xl text-white"> YOU LOSE SUCKER! </div>
+          <div className="loser w-42 h-16 text-5xl text-white bg-transparent absolute inset right-1/2 bottom-2">
+            {' '}
+            YOU LOSE SUCKER!{' '}
+          </div>
         )}
       </div>
     </div>

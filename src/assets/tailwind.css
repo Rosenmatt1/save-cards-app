@@ -7,22 +7,9 @@
 .poker-main {
   /* background-color: green;
   background-image: linear-gradient(315deg, #00b712 0%, green 74%); */
-  /* position: relative; */
 }
 
 .counter-container {
-  position: absolute;
-  top: 10vh;
-  right: 50vw;
-  margin-top: 20px;
-  margin-right: -2rem;
-  /* border: yellow solid 2px; */
-}
-
-.winner {
-  position: absolute;
-  top: 11vh;
-  right: 25vw;
   margin-right: -2rem;
   /* border: yellow solid 2px; */
 }
@@ -31,30 +18,11 @@
   font-family: Alfa Slab One;
 }
 
-.reset-container {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  /* color: yellow;
-  border: 1px solid yellow; */
-}
-
-.reset {
-  font-family: Alfa Slab One;
-}
-
 .playAgainContainer {
-  position: absolute;
-  bottom: 20vh;
-  right: 50vw;
-  /* color: yellow;
-  border: 1px solid yellow; */
+  margin-right: -5rem;
 }
 
 .deal-container {
-  position: absolute;
-  bottom: 16vh;
-  right: 50vw;
   margin-right: -10rem;
 }
 
@@ -65,16 +33,24 @@
 .cards-grid {
 }
 
-.card {
-  position: absolute;
-  top: 30%;
+.card1 {
   font-family: Rockwell;
 }
 
-.bottom-right-suit {
-  position: absolute;
-  bottom: 1.5rem;
-  right: 1.5rem;
+.card2 {
+  font-family: Rockwell;
+}
+
+.card3 {
+  font-family: Rockwell;
+}
+
+.card4 {
+  font-family: Rockwell;
+}
+
+.card5 {
+  font-family: Rockwell;
 }
 
 .suit-name {
@@ -83,73 +59,19 @@
 }
 
 .dealer {
-  /* box-shadow: 0 0 0.0625em 0.125em rgba(0, 0, 0, 0.15); */
-  position: fixed;
-  right: 50vw;
-  top: 0;
   margin-right: -4rem;
 }
 
-.win-lose {
-  position: absolute;
-  bottom: 1rem;
-  right: 50vw;
-  background-color: transparent;
-  margin-right: -12rem;
+.loser {
+  margin-right: -11.5rem;
 }
 
-/* Loader */
-.lds-heart {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-  transform: rotate(45deg);
-  transform-origin: 40px 40px;
+.winner {
+  top: 10vh;
+  right: 25vw;
+  margin-right: -2rem;
 }
-.lds-heart div {
-  top: 32px;
-  left: 32px;
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  background: green;
-  animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-.lds-heart div:after,
-.lds-heart div:before {
-  content: ' ';
-  position: absolute;
-  display: block;
-  width: 32px;
-  height: 32px;
-  background: green;
-}
-.lds-heart div:before {
-  left: -24px;
-  border-radius: 50% 0 0 50%;
-}
-.lds-heart div:after {
-  top: -24px;
-  border-radius: 50% 50% 0 0;
-}
-@keyframes lds-heart {
-  0% {
-    transform: scale(0.95);
-  }
-  5% {
-    transform: scale(1.1);
-  }
-  39% {
-    transform: scale(0.85);
-  }
-  45% {
-    transform: scale(1);
-  }
-  60% {
-    transform: scale(0.95);
-  }
-  100% {
-    transform: scale(0.9);
-  }
+
+.reset {
+  font-family: Alfa Slab One;
 }
