@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import '../assets/tailwind.css'
-
 import Deal from './Deal.js'
 import data from '../data.js'
 

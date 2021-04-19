@@ -5,32 +5,19 @@ import Cards from './Cards.js'
 // import Counter from './Counter.js'
 import WinOrLose from './WinOrLose.js'
 import DealerDeck from './DealerDeck.js'
-import PlayAgain from './PlayAgain.js'
-
 import { ReactComponent as Diamond } from '../assets/Diamond.svg'
 import { ReactComponent as Spade } from '../assets/Spade.svg'
 import { ReactComponent as Heart } from '../assets/Heart.svg'
 import { ReactComponent as Clover } from '../assets/Clover.svg'
-
-// import Reset from './Reset.js'
-// import Loader from './shared/Loader.js';
-// import Error from './shared/Error.js';
-
 import { ReactComponent as Winner } from '../assets/Winner.svg'
 
 const Deal = ({ data }) => {
   let [cards, setCards] = useState(data)
-  // console.log("Cards!!!!!", cards)
-  let [winner, setWinner] = useState(false)
+  let [winner, setWinner] = useState(null)
   let fullDeck = JSON.parse(localStorage.getItem('fullDeck'))
-  console.log('fullDeck', fullDeck)
-  // let cards = data
-  console.log('Cards!!!!!', cards)
-  let card = null
+  console.log('fullDeck in DEAL', fullDeck)
+  console.log('Cards in DEAL!!!!!', cards)
   let randomIndex = null
-
-  // let [activeCards, setActiveCards] = useState(null)
-  // let activeCards = []
 
   let [card1, setCard1] = useState(null)
   let [card2, setCard2] = useState(null)
@@ -47,70 +34,39 @@ const Deal = ({ data }) => {
     if (cards.length > 2) {
       randomIndex = Math.floor(Math.random() * cards.length)
       setCard1(cards[randomIndex])
-      console.log('Card1', card1)
-      // activeCards.push(card1)
-      // console.log('activeCards inRndomCards', activeCards)
       cards.splice(randomIndex, 1)
-      console.log('cards length in generateRandomCards', cards.length)
 
       randomIndex = Math.floor(Math.random() * cards.length)
       setCard2(cards[randomIndex])
-      console.log('Card2', card2)
       cards.splice(randomIndex, 1)
-      console.log('cards length in generateRandomCards', cards.length)
 
       randomIndex = Math.floor(Math.random() * cards.length)
       setCard3(cards[randomIndex])
-      console.log('Card3', card3)
       cards.splice(randomIndex, 1)
-      console.log('cards length in generateRandomCards', cards.length)
 
       randomIndex = Math.floor(Math.random() * cards.length)
       setCard4(cards[randomIndex])
-      console.log('Card4', card4)
       cards.splice(randomIndex, 1)
-      console.log('cards length in generateRandomCards', cards.length)
 
       randomIndex = Math.floor(Math.random() * cards.length)
       setCard5(cards[randomIndex])
-      console.log('Card5', card5)
       cards.splice(randomIndex, 1)
       console.log('cards length in generateRandomCards', cards.length)
     } else if (cards.length === 2) {
+      setCard3(null)
+      setCard4(null)
+      setCard5(null)
       setCard1(cards[0])
+      console.log('CARD1', card1)
       setCard2(cards[1])
-      // console.log('ActiveCards in Final Two!', activeCards)
-      console.log('Game Over')
-      checkWin(cards)
+      console.log('CARD2', card2)
+      setCards([])
+      checkWin()
     }
   }
 
-  // let generateRandomCards = () => {
-  //   if (cards.length > 2) {
-  //     for (let i = 0; i <= 4; i++) {
-  //       randomIndex = Math.floor(Math.random() * cards.length)
-  //       card = cards[randomIndex]
-  //       // console.log("Card inRndomCards", card)
-  //       activeCards.push(card)
-  //       // console.log('activeCards inRndomCards', activeCards)
-  //       cards.splice(randomIndex, 1)
-  //       console.log('cards length in generateRandomCards', cards.length)
-  //       // console.log('data', data)
-  //     }
-  //     // activeCards = []
-  //   } else if (cards.length === 2) {
-  //     activeCards.push(cards[0])
-  //     activeCards.push(cards[1])
-  //     console.log('ActiveCards in Final Two!', activeCards)
-  //     console.log('Game Over')
-  //     checkWin(cards)
-  //     // cards = []
-  //     activeCards = []
-  //   }
-  // }
-
   let checkWin = () => {
-    if (cards[0].name === 'A' || card1.name === 'A') {
+    if (card1.name === 'A' || card2.name === 'A') {
       console.log('You Win')
       setWinner(true)
     } else {
@@ -120,10 +76,15 @@ const Deal = ({ data }) => {
   }
 
   let resetDeck = () => {
-    cards = fullDeck
-    console.log('Cards in Reset', cards)
-    console.log('fullDeck in Reset', fullDeck)
-    // setWinner(false)
+    setCard1(null)
+    setCard2(null)
+    setCard3(null)
+    setCard4(null)
+    setCard5(null)
+    setCards(fullDeck)
+    // console.log('Cards in Reset', cards)
+    // console.log('fullDeck in Reset', fullDeck)
+    setWinner(null)
   }
 
   return (
@@ -131,11 +92,16 @@ const Deal = ({ data }) => {
       {cards.length !== 0 && <DealerDeck />}
 
       {cards.length === 0 ? (
-        <PlayAgain onClick={() => resetDeck()} />
+        <div
+          onClick={() => resetDeck()}
+          className="playAgainContainer w-70 h-16 rounded-2xl bg-transparent text-yellow-300 border-2 border-yellow-300 hover:border-red-900 hover:text-red-900 transition transform duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 absolute inset top-3/4 right-1/2 flex justify-center items-center"
+        >
+          <div className="reset font-bold text-3xl w-64 text-center"> Play Again </div>
+        </div>
       ) : (
         <div
-          className="deal-container w-96 h-28 rounded-lg flex justify-center items-center text-7xl font-extrabold bg-yellow-300 hover:text-red-900 absolute inset top-3/4 right-1/2"
           onClick={() => generateRandomCards()}
+          className="deal-container w-96 h-28 rounded-lg flex justify-center items-center text-7xl font-extrabold bg-yellow-300 hover:text-red-900 absolute inset top-3/4 right-1/2"
         >
           <div className="deal"> DEAL </div>
         </div>
@@ -148,13 +114,15 @@ const Deal = ({ data }) => {
         </div>
       </div>
 
+      {/* <Counter data={cards.length} /> */}
+
       <Cards card1={card1} card2={card2} card3={card3} card4={card4} card5={card5} />
 
-      {/* {cards.length === 0 && <WinOrLose winner={winner} />} */}
+      {cards.length === 0 && <WinOrLose winner={winner} />}
 
       <div
-        className="w-56 h-16 rounded-2xl flex justify-center items-center bg-transparent text-yellow-300 border-2 border-yellow-300 hover:border-red-900 hover:text-red-900 transition transform duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 absolute inset bottom-5 right-5"
         onClick={() => resetDeck()}
+        className="w-56 h-16 rounded-2xl flex justify-center items-center bg-transparent text-yellow-300 border-2 border-yellow-300 hover:border-red-900 hover:text-red-900 transition transform duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 absolute inset bottom-5 right-5"
       >
         <div className="reset font-bold text-3xl"> Reset </div>
       </div>

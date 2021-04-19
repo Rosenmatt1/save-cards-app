@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import '../assets/tailwind.css'
-
 import { ReactComponent as Diamond } from '../assets/Diamond.svg'
 import { ReactComponent as Spade } from '../assets/Spade.svg'
 import { ReactComponent as Heart } from '../assets/Heart.svg'
 import { ReactComponent as Clover } from '../assets/Clover.svg'
 
-function Cards({ card1, card2, card3, card4, card5 }) {
+const Cards = ({ card1, card2, card3, card4, card5 }) => {
+  // let [lastTwo, setLastTwo] = useState(false)
+
+  // let decider = (card1 && card2 && card3 && card4 && card5) ? setLastTwo(false) : setLastTwo(true)
+
   return (
     // <div className="cards-grid" >
     //   {cards.map(card => (
@@ -18,6 +21,7 @@ function Cards({ card1, card2, card3, card4, card5 }) {
     //     </div>
     //   ))}
     // </div >
+
     <div>
       {card1 && card2 && card3 && card4 && card5 && (
         <div className="cards-grid absolute flex justify-center overflow-none space-x-20 inset top-1/3">
@@ -101,20 +105,33 @@ function Cards({ card1, card2, card3, card4, card5 }) {
           </div>
         </div>
       )}
+
+      {card1 && card2 && !card3 && !card4 && !card5 && (
+        <div className="cards-grid absolute flex justify-center overflow-none space-x-20 inset top-1/3">
+          <div className="card1 w-52 h-72 rounded-2xl shadow-md bg-white ">
+            <div className="flex-column ml-6">
+              <div className="suit-name -mt-1.5"> {card1.name} </div>
+              <Heart className="h-12 w-12 -mt-5 ml-1" />
+            </div>
+
+            <div className="absolute inset bottom-6 right-6">
+              <Heart className="h-32 w-32" />
+            </div>
+          </div>
+
+          <div className="card2 w-52 h-72  rounded-2xl shadow-md bg-white">
+            <div className="flex-column ml-6">
+              <div className="suit-name -mt-1.5"> {card2.name} </div>
+              <Diamond className="h-12 w-12 -mt-5 ml-1" />
+            </div>
+
+            <div className="absolute inset bottom-6 right-6">
+              <Diamond className="h-32 w-32" />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
-
-    // <div className="cards-grid flex justify-center justify-around">
-    //   <div className="card w-52 h-72 rounded-2xl shadow-md bg-white relative">
-    //     <div className="flex-column ml-6">
-    //       <div className="suit-name -mt-1.5"> A </div>
-    //       <Diamond className="h-12 w-12 -mt-5 ml-1" />
-    //     </div>
-
-    //     <div className="bottom-right-suit">
-    //       <Diamond className="h-32 w-32" />
-    //     </div>
-    //   </div>
-    // </div>
   )
 }
 
