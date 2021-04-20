@@ -4,7 +4,6 @@ import DealerDeck from './DealerDeck.js'
 import Counter from './Counter.js'
 import Cards from './Cards.js'
 import WinOrLose from './WinOrLose.js'
-// import { ReactComponent as Winner } from '../assets/Winner.svg'
 
 const Deal = ({ data }) => {
   const fullDeck = JSON.parse(localStorage.getItem('fullDeck'))
@@ -16,13 +15,6 @@ const Deal = ({ data }) => {
   const [card4, setCard4] = useState(null)
   const [card5, setCard5] = useState(null)
   let randomIndex = null
-
-  // This useEffect was used to solve a render issue in checkWin() where card1 and card2 was using the previous state value
-  useEffect(() => {
-    if (card1 && card2 && !card3 && !card4 && !card5) {
-      checkWin()
-    }
-  }, [card1, card2, card3, card4, card5, checkWin])
 
   const generateRandomCards = () => {
     randomIndex = Math.floor(Math.random() * cards.length)
@@ -63,6 +55,13 @@ const Deal = ({ data }) => {
     }
   }
 
+  // This useEffect was used to solve a render issue in checkWin() where card1 and card2 was using the previous state value
+  useEffect(() => {
+    if (card1 && card2 && !card3 && !card4 && !card5) {
+      checkWin()
+    }
+  }, [card1, card2, card3, card4, card5])
+
   const dealHand = () => {
     if (cards.length > 2) {
       generateRandomCards()
@@ -88,7 +87,7 @@ const Deal = ({ data }) => {
       {cards.length === 0 ? (
         <div
           onClick={() => resetDeck()}
-          className="playAgainContainer w-70 h-16 rounded-2xl bg-transparent text-yellow-300 border-2 border-yellow-300 hover:border-red-900 hover:text-red-900 transition transform duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 absolute inset top-3/4 right-1/2 flex justify-center items-center"
+          className="playAgainContainer w-70 h-16 rounded-2xl bg-transparent text-yellow-300 border-2 border-yellow-300 hover:border-red-900 hover:text-red-900 transition transform duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 absolute inset top-3/4 right-1/2 flex justify-center items-center"
         >
           <div className="reset font-bold text-3xl w-64 text-center cursor-pointer">Play Again</div>
         </div>
@@ -109,7 +108,7 @@ const Deal = ({ data }) => {
 
       <div
         onClick={() => resetDeck()}
-        className="w-56 h-16 rounded-2xl flex justify-center items-center bg-transparent text-yellow-300 border-2 border-yellow-300 hover:border-red-900 hover:text-red-900 transition transform duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 absolute inset bottom-5 right-5 cursor-pointer"
+        className="w-56 h-16 rounded-2xl flex justify-center items-center bg-transparent text-yellow-300 border-2 border-yellow-300 hover:border-red-900 hover:text-red-900 transition transform duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 absolute inset bottom-5 right-5 cursor-pointer"
       >
         <div className="reset font-bold text-3xl"> Reset </div>
       </div>

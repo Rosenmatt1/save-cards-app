@@ -3,10 +3,11 @@ import '../assets/tailwind.css'
 import { ReactComponent as Winner } from '../assets/Winner.svg'
 
 const WinOrLose = ({ winner }) => {
+  console.log(winner)
   return (
     <div>
       {winner ? (
-        <div className="winner z-10 absolute">
+        <div className="winner z-10">
           <Winner />
         </div>
       ) : (

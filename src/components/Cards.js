@@ -9,8 +9,8 @@ const Cards = ({ card1, card2, card3, card4, card5 }) => {
   return (
     <div>
       {card1 && card2 && card3 && card4 && card5 && (
-        <div className="cards-grid absolute flex justify-center overflow-none space-x-20 inset top-1/3">
-          <div className="card1 transform rotate-12 w-52 h-72 rounded-2xl shadow-md bg-white ">
+        <div className="cards-grid absolute flex justify-center overflow-none space-x-20 inset left-52 top-1/3">
+          <div className={`card1 transform w-52 h-72 rounded-2xl shadow-md bg-white`}>
             <div className="flex-column ml-6">
               <div className="suit-name -mt-1.5"> {card1.name} </div>
               {card1.suit === 'heart' ? (
@@ -37,7 +37,7 @@ const Cards = ({ card1, card2, card3, card4, card5 }) => {
             </div>
           </div>
 
-          <div className="card2 transform rotate-6 w-52 h-72  rounded-2xl shadow-md bg-white">
+          <div className="card2 transform w-52 h-72 rounded-2xl shadow-md bg-white">
             <div className="flex-column ml-6">
               <div className="suit-name -mt-1.5"> {card2.name} </div>
               {card2.suit === 'heart' ? (
@@ -64,7 +64,7 @@ const Cards = ({ card1, card2, card3, card4, card5 }) => {
             </div>
           </div>
 
-          <div className="card3 transform w-52 h-72  rounded-2xl shadow-md bg-white">
+          <div className="card3 transform w-52 h-72 rounded-2xl shadow-md bg-white">
             <div className="flex-column ml-6">
               <div className="suit-name -mt-1.5"> {card3.name} </div>
               {card3.suit === 'heart' ? (
@@ -91,7 +91,7 @@ const Cards = ({ card1, card2, card3, card4, card5 }) => {
             </div>
           </div>
 
-          <div className="card4 transform -rotate-6 w-52 h-72 rounded-2xl shadow-md bg-white">
+          <div className="card4 transform w-52 h-72 rounded-2xl shadow-md bg-white">
             <div className="flex-column ml-6">
               <div className="suit-name -mt-1.5"> {card4.name} </div>
               {card4.suit === 'heart' ? (
@@ -118,7 +118,7 @@ const Cards = ({ card1, card2, card3, card4, card5 }) => {
             </div>
           </div>
 
-          <div className="card5 transform -rotate-12 w-52 h-72  rounded-2xl shadow-md bg-white">
+          <div className="card5 transform w-52 h-72 rounded-2xl shadow-md bg-white">
             <div className="flex-column ml-6">
               <div className="suit-name -mt-1.5"> {card5.name} </div>
               {card5.suit === 'heart' ? (
