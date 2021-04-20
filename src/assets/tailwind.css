@@ -35,10 +35,53 @@
 
 .card1 {
   font-family: Rockwell;
+
+  position: relative;
+  animation-name: movecard;
+  animation-duration: 0.1s; /* can be set to: infinite */
+  animation-fill-mode: forwards;
+}
+
+@keyframes movecard {
+  0% {
+    top: -10rem;
+  }
+  100% {
+    top: 10rem;
+  }
+  0% {
+    left: 50%;
+  }
+  100% {
+    top: 50%;
+  }
+
+  /* transition-property: all;
+  transition-duration: 1s;   */
+  /* delay background 1s and border-radius 3s */
+
+  /* transition-delay: 2s;
+  transition-timing-function: ease-in; */
 }
 
 .card2 {
   font-family: Rockwell;
+
+  position: relative;
+  animation-name: movecard;
+  animation-duration: 0.3s; /* can be set to: infinite */
+  animation-fill-mode: forwards;
+}
+
+@keyframes movecard {
+  0% {
+    top: -400px;
+  }
+  100% {
+    top: 0px;
+  }
+  /* 0%   {left: -400px;}
+  100% {left: 0px;} */
 }
 
 .card3 {
@@ -50,6 +93,14 @@
 }
 
 .card5 {
+  font-family: Rockwell;
+}
+
+.last-card1 {
+  font-family: Rockwell;
+}
+
+.last-card2 {
   font-family: Rockwell;
 }
 
@@ -70,6 +121,20 @@
   top: 9.5vh;
   right: 25vw;
   margin-right: -2rem;
+
+  position: relative;
+  animation-name: winner;
+  animation-duration: 2s; /* can be set to: infinite */
+  animation-fill-mode: forwards;
+}
+
+@keyframes winner {
+  0% {
+    top: -10rem;
+  }
+  100% {
+    top: 10rem;
+  }
 }
 
 .reset {

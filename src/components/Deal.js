@@ -3,34 +3,30 @@ import '../assets/tailwind.css'
 
 import Cards from './Cards.js'
 // import Counter from './Counter.js'
+
 import WinOrLose from './WinOrLose.js'
 import DealerDeck from './DealerDeck.js'
-import { ReactComponent as Diamond } from '../assets/Diamond.svg'
-import { ReactComponent as Spade } from '../assets/Spade.svg'
-import { ReactComponent as Heart } from '../assets/Heart.svg'
-import { ReactComponent as Clover } from '../assets/Clover.svg'
 import { ReactComponent as Winner } from '../assets/Winner.svg'
 
 const Deal = ({ data }) => {
-  let [cards, setCards] = useState(data)
-  let [winner, setWinner] = useState(null)
   let fullDeck = JSON.parse(localStorage.getItem('fullDeck'))
-  console.log('fullDeck in DEAL', fullDeck)
-  console.log('Cards in DEAL!!!!!', cards)
-  let randomIndex = null
-
+  let [cards, setCards] = useState(data)
+  let [winner, setWinner] = useState(false)
   let [card1, setCard1] = useState(null)
   let [card2, setCard2] = useState(null)
   let [card3, setCard3] = useState(null)
   let [card4, setCard4] = useState(null)
   let [card5, setCard5] = useState(null)
+  let randomIndex = null
 
-  // useEffect(() => {
-  //   fullDeck = JSON.parse(localStorage.getItem('fullDeck'))
-  //   console.log('fullDeck from local storage on Load', fullDeck)
-  // }, [cards])
+  // This useEffect was used to solve a render issue in checkWin() where card1 and card2 was using the previous state value
+  useEffect(() => {
+    if (card1 && card2 && !card3 && !card4 && !card5) {
+      checkWin()
+    }
+  }, [card1])
 
-  let generateRandomCards = () => {
+  let dealHand = () => {
     if (cards.length > 2) {
       randomIndex = Math.floor(Math.random() * cards.length)
       setCard1(cards[randomIndex])
@@ -51,26 +47,24 @@ const Deal = ({ data }) => {
       randomIndex = Math.floor(Math.random() * cards.length)
       setCard5(cards[randomIndex])
       cards.splice(randomIndex, 1)
-      console.log('cards length in generateRandomCards', cards.length)
     } else if (cards.length === 2) {
-      setCard3(null)
-      setCard4(null)
-      setCard5(null)
-      setCard1(cards[0])
-      console.log('CARD1', card1)
-      setCard2(cards[1])
-      console.log('CARD2', card2)
-      setCards([])
-      checkWin()
+      lastTwo()
     }
+  }
+
+  let lastTwo = () => {
+    setCard3(null)
+    setCard4(null)
+    setCard5(null)
+    setCard1(cards[0])
+    setCard2(cards[1])
+    setCards([])
   }
 
   let checkWin = () => {
     if (card1.name === 'A' || card2.name === 'A') {
-      console.log('You Win')
       setWinner(true)
     } else {
-      console.log('You Lose Sucker')
       setWinner(false)
     }
   }
@@ -82,9 +76,7 @@ const Deal = ({ data }) => {
     setCard4(null)
     setCard5(null)
     setCards(fullDeck)
-    // console.log('Cards in Reset', cards)
-    // console.log('fullDeck in Reset', fullDeck)
-    setWinner(null)
+    setWinner(false)
   }
 
   return (
@@ -96,12 +88,15 @@ const Deal = ({ data }) => {
           onClick={() => resetDeck()}
           className="playAgainContainer w-70 h-16 rounded-2xl bg-transparent text-yellow-300 border-2 border-yellow-300 hover:border-red-900 hover:text-red-900 transition transform duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 absolute inset top-3/4 right-1/2 flex justify-center items-center"
         >
-          <div className="reset font-bold text-3xl w-64 text-center"> Play Again </div>
+          <div className="reset font-bold text-3xl w-64 text-center cursor-pointer">
+            {' '}
+            Play Again{' '}
+          </div>
         </div>
       ) : (
         <div
-          onClick={() => generateRandomCards()}
-          className="deal-container w-96 h-28 rounded-lg flex justify-center items-center text-7xl font-extrabold bg-yellow-300 hover:text-red-900 absolute inset top-3/4 right-1/2"
+          onClick={() => dealHand()}
+          className="deal-container w-96 h-28 rounded-lg flex justify-center items-center text-7xl font-extrabold bg-yellow-300 hover:text-red-900 absolute inset top-3/4 right-1/2 shadow-lg cursor-pointer"
         >
           <div className="deal"> DEAL </div>
         </div>
@@ -122,7 +117,7 @@ const Deal = ({ data }) => {
 
       <div
         onClick={() => resetDeck()}
-        className="w-56 h-16 rounded-2xl flex justify-center items-center bg-transparent text-yellow-300 border-2 border-yellow-300 hover:border-red-900 hover:text-red-900 transition transform duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 absolute inset bottom-5 right-5"
+        className="w-56 h-16 rounded-2xl flex justify-center items-center bg-transparent text-yellow-300 border-2 border-yellow-300 hover:border-red-900 hover:text-red-900 transition transform duration-500 ease-in-out hover:-translate-y-1 hover:scale-110 absolute inset bottom-5 right-5 cursor-pointer"
       >
         <div className="reset font-bold text-3xl"> Reset </div>
       </div>
