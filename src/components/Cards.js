@@ -5,10 +5,10 @@ import { ReactComponent as Spade } from '../assets/Spade.svg'
 import { ReactComponent as Heart } from '../assets/Heart.svg'
 import { ReactComponent as Clover } from '../assets/Clover.svg'
 
-const Cards = ({ card1, card2, card3, card4, card5 }) => {
+const Cards = ({ card1, card2, card3, card4, card5, newDeal }) => {
   return (
     <div>
-      {card1 && card2 && card3 && card4 && card5 && (
+      {card1 && card2 && card3 && card4 && card5 && newDeal && (
         <div className="cards-grid absolute flex justify-center overflow-none space-x-20 inset left-52 top-1/3">
           <div className={`card1 transform w-52 h-72 rounded-2xl shadow-md bg-white`}>
             <div className="flex-column ml-6">
@@ -147,7 +147,7 @@ const Cards = ({ card1, card2, card3, card4, card5 }) => {
         </div>
       )}
 
-      {card1 && card2 && !card3 && !card4 && !card5 && (
+      {card1 && card2 && !card3 && !card4 && !card5 && newDeal && (
         <div className="cards-grid absolute flex justify-center overflow-none space-x-20 inset left-1/3 top-1/3">
           <div className="last-card1 transform w-52 h-72 rounded-2xl shadow-md bg-white ">
             <div className="flex-column ml-6">

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import '../assets/tailwind.css'
-import Deal from './Deal.js'
 import data from '../data.js'
+import Deal from './Deal.js'
 
 // This componenet is where the initial fetch query could be.
 const PokerMain = () => {

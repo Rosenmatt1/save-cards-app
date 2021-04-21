@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import '../assets/tailwind.css'
-import DealerDeck from './DealerDeck.js'
+import _ from 'lodash'
 import Counter from './Counter.js'
 import Cards from './Cards.js'
+import DealerDeck from './DealerDeck.js'
 import WinOrLose from './WinOrLose.js'
 
 const Deal = ({ data }) => {
   const fullDeck = JSON.parse(localStorage.getItem('fullDeck'))
   const [cards, setCards] = useState(data)
   const [winner, setWinner] = useState(false)
+  const [newDeal, setNewDeal] = useState(true)
   const [card1, setCard1] = useState(null)
   const [card2, setCard2] = useState(null)
   const [card3, setCard3] = useState(null)
@@ -17,6 +19,11 @@ const Deal = ({ data }) => {
   let randomIndex = null
 
   const generateRandomCards = () => {
+    _.delay(function() {
+      // this is the function that allows the cards to rerender so the animation happens again
+      setNewDeal(true)
+    }, 10)
+
     randomIndex = Math.floor(Math.random() * cards.length)
     setCard1(cards[randomIndex])
     cards.splice(randomIndex, 1)
@@ -39,6 +46,10 @@ const Deal = ({ data }) => {
   }
 
   const lastTwo = () => {
+    _.delay(function() {
+      setNewDeal(true)
+    }, 10)
+
     setCard3(null)
     setCard4(null)
     setCard5(null)
@@ -63,6 +74,8 @@ const Deal = ({ data }) => {
   }, [card1, card2, card3, card4, card5])
 
   const dealHand = () => {
+    setNewDeal(false)
+
     if (cards.length > 2) {
       generateRandomCards()
     } else if (cards.length === 2) {
@@ -102,7 +115,14 @@ const Deal = ({ data }) => {
 
       <Counter data={cards.length} />
 
-      <Cards card1={card1} card2={card2} card3={card3} card4={card4} card5={card5} />
+      <Cards
+        card1={card1}
+        card2={card2}
+        card3={card3}
+        card4={card4}
+        card5={card5}
+        newDeal={newDeal}
+      />
 
       {cards.length === 0 && <WinOrLose winner={winner} />}
 
