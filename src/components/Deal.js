@@ -5,6 +5,7 @@ import Counter from './Counter.js'
 import Cards from './Cards.js'
 import DealerDeck from './DealerDeck.js'
 import WinOrLose from './WinOrLose.js'
+import flick from '../assets/card-flick.wav'
 
 const Deal = ({ data }) => {
   const fullDeck = JSON.parse(localStorage.getItem('fullDeck'))
@@ -17,6 +18,7 @@ const Deal = ({ data }) => {
   const [card4, setCard4] = useState(null)
   const [card5, setCard5] = useState(null)
   let randomIndex = null
+  const sound = new Audio(flick)
 
   const generateRandomCards = () => {
     _.delay(function() {
@@ -27,6 +29,7 @@ const Deal = ({ data }) => {
     randomIndex = Math.floor(Math.random() * cards.length)
     setCard1(cards[randomIndex])
     cards.splice(randomIndex, 1)
+    sound.play()
 
     randomIndex = Math.floor(Math.random() * cards.length)
     setCard2(cards[randomIndex])
@@ -50,6 +53,7 @@ const Deal = ({ data }) => {
       setNewDeal(true)
     }, 10)
 
+    sound.play()
     setCard3(null)
     setCard4(null)
     setCard5(null)
