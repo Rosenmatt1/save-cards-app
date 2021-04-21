@@ -22,14 +22,12 @@ const Deal = ({ data }) => {
 
   const generateRandomCards = () => {
     _.delay(function() {
-      // this is the function that allows the cards to rerender so the animation happens again
       setNewDeal(true)
     }, 10)
 
     randomIndex = Math.floor(Math.random() * cards.length)
     setCard1(cards[randomIndex])
     cards.splice(randomIndex, 1)
-    sound.play()
 
     randomIndex = Math.floor(Math.random() * cards.length)
     setCard2(cards[randomIndex])
@@ -46,6 +44,7 @@ const Deal = ({ data }) => {
     randomIndex = Math.floor(Math.random() * cards.length)
     setCard5(cards[randomIndex])
     cards.splice(randomIndex, 1)
+    sound.play()
   }
 
   const lastTwo = () => {
@@ -53,11 +52,11 @@ const Deal = ({ data }) => {
       setNewDeal(true)
     }, 10)
 
-    sound.play()
     setCard3(null)
     setCard4(null)
     setCard5(null)
     setCard1(cards[0])
+    sound.play()
     setCard2(cards[1])
     setCards([])
   }
@@ -98,7 +97,7 @@ const Deal = ({ data }) => {
   }
 
   return (
-    <div className="poker-main w-screen h-screen bg-gradient-to-b from-green-400 to-black ring-1 relative">
+    <div className="w-screen h-screen bg-gradient-to-b from-green-400 to-black ring-1 relative">
       {cards.length !== 0 && <DealerDeck />}
 
       {cards.length === 0 ? (

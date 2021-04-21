@@ -28,8 +28,7 @@
   font-family: Rockwell;
   position: relative;
   animation-name: movecard;
-  animation-duration: 0.3s;
-  /* animation-delay: .11s; */
+  animation-duration: 0.1s;
   animation-fill-mode: forwards;
 }
 
@@ -37,26 +36,24 @@
   font-family: Rockwell;
   position: relative;
   animation-name: movecard;
-  animation-duration: 0.6s;
-  /* animation-delay: .11s; */
+  animation-duration: 0.2s;
   animation-fill-mode: forwards;
 }
 
 @keyframes movecard {
   0% {
-    top: -400px;
+    top: -600px;
   }
-  /* 100% {
+  100% {
     top: 0px;
-  } */
+  }
 }
 
 .card3 {
   font-family: Rockwell;
   position: relative;
   animation-name: movecard;
-  animation-duration: 0.9s;
-  /* animation-delay: .11s; */
+  animation-duration: 0.3s;
   animation-fill-mode: forwards;
 }
 
@@ -64,8 +61,7 @@
   font-family: Rockwell;
   position: relative;
   animation-name: movecard;
-  animation-duration: 1.2s;
-  /* animation-delay: .11s; */
+  animation-duration: 0.4s;
   animation-fill-mode: forwards;
 }
 
@@ -73,17 +69,24 @@
   font-family: Rockwell;
   position: relative;
   animation-name: movecard;
-  animation-duration: 1.5s;
-  /* animation-delay: .11s; */
+  animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 
 .last-card1 {
   font-family: Rockwell;
+  position: relative;
+  animation-name: movecard;
+  animation-duration: 0.1s;
+  animation-fill-mode: forwards;
 }
 
 .last-card2 {
   font-family: Rockwell;
+  position: relative;
+  animation-name: movecard;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
 }
 
 .suit-name {
