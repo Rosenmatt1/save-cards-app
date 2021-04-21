@@ -14,10 +14,22 @@
 
 .playAgainContainer {
   margin-right: -5rem;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .deal-container {
   margin-right: -10rem;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .deal {
@@ -38,15 +50,6 @@
   animation-name: movecard;
   animation-duration: 0.2s;
   animation-fill-mode: forwards;
-}
-
-@keyframes movecard {
-  0% {
-    top: -600px;
-  }
-  100% {
-    top: 0px;
-  }
 }
 
 .card3 {
@@ -87,6 +90,15 @@
   animation-name: movecard;
   animation-duration: 0.2s;
   animation-fill-mode: forwards;
+}
+
+@keyframes movecard {
+  0% {
+    top: -600px;
+  }
+  100% {
+    top: 0px;
+  }
 }
 
 .suit-name {

@@ -51,7 +51,6 @@ const Deal = ({ data }) => {
     _.delay(function() {
       setNewDeal(true)
     }, 10)
-
     setCard3(null)
     setCard4(null)
     setCard5(null)
