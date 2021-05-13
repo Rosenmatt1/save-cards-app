@@ -32143,14 +32143,8 @@ video {
   --tw-backdrop-sepia: sepia(100%);
 }
 
-.poker-main {
-  /* background-color: green;
-  background-image: linear-gradient(315deg, #00b712 0%, green 74%); */
-}
-
 .counter-container {
   margin-right: -2rem;
-  /* border: yellow solid 2px; */
 }
 
 .counter {
@@ -32159,37 +32153,119 @@ video {
 
 .playAgainContainer {
   margin-right: -5rem;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .deal-container {
   margin-right: -10rem;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .deal {
   font-family: Alfa Slab One;
 }
 
-.cards-grid {
-}
-
 .card1 {
   font-family: Rockwell;
+  position: relative;
+  -webkit-animation-name: movecard;
+  animation-name: movecard;
+  -webkit-animation-duration: 0.1s;
+  animation-duration: 0.1s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 
 .card2 {
   font-family: Rockwell;
+  position: relative;
+  -webkit-animation-name: movecard;
+  animation-name: movecard;
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 
 .card3 {
   font-family: Rockwell;
+  position: relative;
+  -webkit-animation-name: movecard;
+  animation-name: movecard;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 
 .card4 {
   font-family: Rockwell;
+  position: relative;
+  -webkit-animation-name: movecard;
+  animation-name: movecard;
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 
 .card5 {
   font-family: Rockwell;
+  position: relative;
+  -webkit-animation-name: movecard;
+  animation-name: movecard;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.last-card1 {
+  font-family: Rockwell;
+  position: relative;
+  -webkit-animation-name: movecard;
+  animation-name: movecard;
+  -webkit-animation-duration: 0.1s;
+  animation-duration: 0.1s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.last-card2 {
+  font-family: Rockwell;
+  position: relative;
+  -webkit-animation-name: movecard;
+  animation-name: movecard;
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes movecard {
+  0% {
+    top: -600px;
+  }
+
+  100% {
+    top: 0px;
+  }
+}
+
+@keyframes movecard {
+  0% {
+    top: -600px;
+  }
+
+  100% {
+    top: 0px;
+  }
 }
 
 .suit-name {
@@ -32206,9 +32282,35 @@ video {
 }
 
 .winner {
-  top: 10vh;
-  right: 25vw;
-  margin-right: -2rem;
+  position: relative;
+  -webkit-animation-name: winner;
+  animation-name: winner;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  top: 5rem !important;
+  left: 23rem;
+}
+
+@-webkit-keyframes winner {
+  0% {
+    top: -10rem;
+  }
+
+  100% {
+    top: 20rem;
+  }
+}
+
+@keyframes winner {
+  0% {
+    top: -10rem;
+  }
+
+  100% {
+    top: 20rem;
+  }
 }
 
 .reset {
